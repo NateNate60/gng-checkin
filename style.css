@@ -1,0 +1,130 @@
+body, .button {
+    font: 14px "Century Gothic", Futura, sans-serif;
+    margin: 20px;
+}
+
+input[type="submit"], button {
+    font: 14px "Century Gothic", Futura, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+.left-align {
+    float: left;
+
+}
+
+.right-align {
+    float: right;
+}
+
+.centre-align {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    display: block;
+}
+
+.green-button {
+    background-color: rgb(129, 255, 129);
+    width: fit-content;
+    border-style: solid;
+    border-color: grey;
+    border-width: 2px;
+    border-radius: 10px;
+    display: inline;
+    padding: 5px;
+}
+
+.green-button:hover {
+    background-color: rgb(165, 253, 165);
+}
+
+.green-button:active {
+    background-color: rgb(86, 241, 86);
+}
+
+.white-button {
+    background-color: rgb(255,255,255);
+    width: fit-content;
+    border-style: solid;
+    border-color: grey;
+    border-width: 2px;
+    border-radius: 10px;
+    display: inline;
+    padding: 5px;
+    color: black;
+}
+
+.white-button:hover {
+    background-color: rgb(200,200,200);
+}
+
+.white-button:active {
+    background-color: rgb(120,120,120);
+}
+
+.blue-button {
+    background-color: rgb(55, 85, 253);
+    width: fit-content;
+    border-style: solid;
+    border-color: grey;
+    border-width: 2px;
+    border-radius: 10px;
+    display: inline;
+    color: white;
+    padding: 5px;
+}
+
+.blue-button:hover {
+    background-color: rgb(82, 107, 248);
+}
+
+.blue-button:active {
+    background-color: rgb(38, 70, 252);
+}
+
+.red-button {
+    background-color: rgb(255, 43, 43);
+    width: fit-content;
+    border-style: solid;
+    border-color: grey;
+    border-width: 2px;
+    border-radius: 10px;
+    display: inline;
+    color: white;
+    padding: 5px;
+}
+
+.red-button:hover {
+    background-color: rgb(245, 96, 96);
+}
+
+.red-button:active {
+    background-color: rgb(119, 0, 0);
+}
+
+.image200 {
+    width: 200px;
+    height: 200px;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 250%;
+}
+
+td {
+    text-align: right;
+}
+
+.results-list {
+    padding: 1%;
+    text-align: center;
+}
+
+.error-text {
+    color: red;
+}
