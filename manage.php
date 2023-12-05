@@ -72,8 +72,8 @@
                                     ?>
                                 </select>
                             </td>
-                            <td> on the date </td>
-                            <td><input type="date" name="date" id="event_date_input" disabled required value=<?php echo array_key_exists("date", $_GET) ? $_GET["date"] : "" ?> ></td>
+                            <td> on the month </td>
+                            <td><input type="month" name="date" id="event_date_input" disabled required value=<?php echo array_key_exists("date", $_GET) ? $_GET["date"] : "" ?> ></td>
 
                         </tr>
                         <tr>
@@ -221,12 +221,20 @@
                     $query = '%' . $_GET['name'] . '%';
                     $sql->bindParam(":query", $query);
                 } else if ($mode == "events_participated") {
-                    $sql = $connection->prepare("SELECT EventAttendance.pid, Events.event_name, EventAttendance.event_date, EventAttendance.event_type, Players.fname, Players.lname, Players.pokemon_id, Players.mtg_id, Players.mha_id FROM EventAttendance INNER JOIN Players ON EventAttendance.pid = Players.pid INNER JOIN Events ON Events.event_type = EventAttendance.event_type WHERE EventAttendance.pid = :p_id");
+                    $sql = $connection->prepare("SELECT EventAttendance.pid, Events.event_name, EventAttendance.event_date, EventAttendance.event_type, Players.fname, Players.lname, Players.pokemon_id, Players.mtg_id, Players.mha_id, Players.email 
+                                                 FROM EventAttendance INNER JOIN Players ON EventAttendance.pid = Players.pid 
+                                                 INNER JOIN Events ON Events.event_type = EventAttendance.event_type WHERE EventAttendance.pid = :p_id");
                     $sql->bindParam(":p_id", $_GET["player"]);
                 } else if ($mode == "attendance") {
-                    $sql = $connection->prepare("SELECT EventAttendance.pid, Events.event_name, EventAttendance.event_date, Players.fname, Players.lname, Players.pokemon_id, Players.mtg_id, Players.mha_id, Players.email FROM EventAttendance INNER JOIN Players ON EventAttendance.pid = Players.pid INNER JOIN Events ON Events.event_type = EventAttendance.event_type WHERE EventAttendance.event_type = :etype AND EventAttendance.event_date = :edate");
+                    $sql = $connection->prepare("SELECT EventAttendance.pid, Events.event_name, EventAttendance.event_date, Players.fname, Players.lname, Players.pokemon_id, Players.mtg_id, Players.mha_id, Players.email 
+                                                 FROM EventAttendance INNER JOIN Players ON EventAttendance.pid = Players.pid 
+                                                 INNER JOIN Events ON Events.event_type = EventAttendance.event_type 
+                                                 WHERE EventAttendance.event_type = :etype 
+                                                 AND EventAttendance.event_date LIKE :edate 
+                                                 ORDER BY EventAttendance.event_date, EventAttendance.pid");
                     $sql->bindParam(":etype", $_GET["event_type"]);
-                    $sql->bindParam(":edate", $_GET["date"]);
+                    $datestring = '%' . $_GET["date"] . "-%";
+                    $sql->bindParam(":edate", $datestring);
                 }
 
                 if ($sql->execute()) {
