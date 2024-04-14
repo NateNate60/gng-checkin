@@ -34,17 +34,16 @@
                                      WHERE EventAttendance.event_type = :etype AND EventAttendance.event_date LIKE :edate 
                                      INTO OUTFILE :exportfilename FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\\n'");
         $sql->bindParam(":etype", $_GET["event_type"]);
-        $month = "%" . $_GET["date"] . "-%";
+        $month = $_GET["date"] . "%";
         $sql->bindParam(":edate", $month);
     }
 
-    $filename = "/tmp/export";
+    $filename = "/var/www/html/gng/export/export";
     $filename = $filename . rand(1000000, 9999999);
     $filename = $filename . ".csv";
     $sql->bindParam(":exportfilename", $filename);
 
-    echo $filename;
-    
+    //echo $filename;
     if ($sql->execute()) {
         header('Content-Description: File Transfer');
         header('Content-Type: application/octet-stream');
