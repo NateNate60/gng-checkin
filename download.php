@@ -43,7 +43,6 @@
     $filename = $filename . ".csv";
     $sql->bindParam(":exportfilename", $filename);
 
-    //echo $filename;
     if ($sql->execute()) {
         header('Content-Description: File Transfer');
         header('Content-Type: application/octet-stream');
